@@ -102,7 +102,7 @@ function Form({valueObject, label, id}) {
   }
 
   return(
-    <div className='input-conatiner'>
+    <div className='input-container'>
       <div></div>
       <label className='label'>{label} </label>
       <input id={id} className='input' type={type} {...valueObject} />
@@ -112,7 +112,7 @@ function Form({valueObject, label, id}) {
 
 function RadioForm({valueObject, label, id}) {
   return(
-    <div className='input-conatiner'>
+    <div className='input-container'>
       <div></div>
       <label className='label'>{label} </label>
       <div className='input'>
