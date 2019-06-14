@@ -11,10 +11,12 @@ export const convertToBase64 = (selectedFile) => {
         fileReader.onload = function (fileLoadedEvent) {
             base64 = fileLoadedEvent.target.result;
             // Print data in console
+            console.log(base64)
         };
         // Convert data to base64
         fileReader.readAsDataURL(fileToLoad);
-        return fileReader;
+        console.log(base64)
+        return base64;
     }
     return {};
 }

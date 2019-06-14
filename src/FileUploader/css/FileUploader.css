@@ -1,9 +1,14 @@
 .uploader-container{
-    /* min-width:100vw;
+    min-height:100vh;
+}
+
+.uploader{
+    height:10vh;
     display:flex;
     justify-content: center;
-    align-items:center;
-     */
+    align-items: center;
+    flex-direction: column;
+    border:2px solid black;
 }
 
 /* #upload-file{
