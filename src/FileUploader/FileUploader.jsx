@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './css/FileUploader.css';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import uploadIcon from '../uploadIcon.jpg';
 
 export default function FileUploader(props) {
 
     const [rawBase64, setRawBase64] = useState('');
+    const [fileName, setFileName] = useState('')
 
     const { handleChange } = props;
 
@@ -15,6 +17,8 @@ export default function FileUploader(props) {
         if (selectedFile.length > 0) {
             // Select the very first file from list
             let fileToLoad = selectedFile[0];
+            console.log(fileToLoad)
+            setFileName(fileToLoad.name)
             // FileReader function for read the file.
             let fileReader = new FileReader();
             let base64;
@@ -43,12 +47,6 @@ export default function FileUploader(props) {
         accept: 'image/jpeg, image/png, application/pdf'
     });
 
-    const files = acceptedFiles.map(file => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
-        </li>
-    ));
-
     useEffect(() => {
         if (rawBase64) {
             const loaderTriggerFlag = 2;
@@ -56,27 +54,31 @@ export default function FileUploader(props) {
             handleChange(loaderTriggerFlag,
                 {
                     fileBase64: base64_arr[1].split(',')[1],
-                    type: base64_arr[0].split(':')[1]
+                    type: base64_arr[0].split(':')[1],
+                    fileName: fileName
                 });
         }
 
     }, [rawBase64, handleChange]);
 
     return (
-        <div className="uploader-container">
-            <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {
-                    isDragActive ?
-                        <p>Drop the files here ...</p> :
-                        <p className="uploader">Drag 'n' drop some files here, or click to select files</p>
-                }
+        <div className="parent-container">
+            <div className="uploader-container">
+                <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <div className="uploader">
+
+                        {
+                            isDragActive ?
+                                <div className="upload-instruction">Drop the files</div> :
+                                <div className="upload-instruction">Drag and drop<br /> or<br /> Click to Select</div>
+                        }
+                    </div>
+
+                </div>
             </div>
-            <aside>
-                <h4>Files</h4>
-                <ul>{files}</ul>
-            </aside>
         </div>
+
 
     )
 }
