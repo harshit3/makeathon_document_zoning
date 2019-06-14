@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import pdf from './demo.pdf';
 import FileUploader from './FileUploader/FileUploader';
@@ -16,12 +16,26 @@ function App() {
   const proposed_nationality = useFormInput('');
   const proposed_age = useFormInput('');
   const proposed_emailAddress = useFormInput('');
+  const proposed_dob = useFormInput('');
+
   const proposer_name = useFormInput('');
   const proposer_age = useFormInput('');
 
+  const family_marital = useFormInput('');
+  
+  const address_pincode = useFormInput('');
+
+  useEffect(() => {
+    if(fileStatus===2) {
+      setTimeout(() => {
+        setFileStatus(3)
+      }, 2000)
+    }
+  }, [fileStatus, fileData])
+
   function handleFileChange(fileStatus, fileData) {
     setFileStatus(fileStatus);
-    setFileData(fileData);
+    setFileData({...fileData});
   }
 
   if(fileStatus===1) {
@@ -37,6 +51,7 @@ function App() {
       <div className="App">
         <div className='online-form-container'>
           <hr/>
+          <span className='back' onClick={() => setFileStatus(1)}>Upload Again</span>
           <h2 className='header'>Online Form</h2>
           <hr/>
           <form>
@@ -44,11 +59,18 @@ function App() {
             <Form valueObject={proposed_name} label='Name' id='proposed-name' />
             <Form valueObject={proposed_age} label='Age' id='proposed-age' />
             <Form valueObject={proposed_emailAddress} label='Email Address' id='proposed-email' />
+            <Form valueObject={proposed_dob} label='Date Of Birth' id='proposed-dob' />
             <Form valueObject={proposed_nationality} label='Nationality' id='proposed-nationality' />
   
             <div className='section-name'>Proposer</div>
             <Form valueObject={proposer_name} label='Name' id='proposer-name' />
             <Form valueObject={proposer_age} label='Age' id='proposer-age' />
+
+            <div className='section-name'>Family Details</div>
+            <RadioForm valueObject={family_marital} label='Marital Status' id='family-marital' />
+
+            <div className='section-name'>Address</div>
+            <Form valueObject={address_pincode} label='Pin Code' id='address-pincode' />
           </form>
         </div>
         <div className='scanned-form-container'>
@@ -69,13 +91,36 @@ function useFormInput(initialValue) {
   }
 }
 
-function Form({valueObject, label}) {
+function Form({valueObject, label, id}) {
+  let type = ''
+  switch(label) {
+    case 'Date Of Birth':
+      type='date';
+      break;
+    default:
+      type='text'; 
+  }
+
   return(
     <div className='input-conatiner'>
       <div></div>
       <label className='label'>{label} </label>
-      <input className='input' type='text' {...valueObject} />
+      <input id={id} className='input' type={type} {...valueObject} />
+    </div>
+  );
+}
+
+function RadioForm({valueObject, label, id}) {
+  return(
+    <div className='input-conatiner'>
       <div></div>
+      <label className='label'>{label} </label>
+      <div className='input'>
+        <span className='radio-input'><input id={id} type='radio' name='marital' onChange={valueObject.onChange} value='Single' /> Single</span>
+        <span className='radio-input'><input id={id} type='radio' name='marital' onChange={valueObject.onChange} value='Married' /> Married</span>
+        <span className='radio-input'><input id={id} type='radio' name='marital' onChange={valueObject.onChange} value='Divorced' /> Divorced</span>
+        <span className='radio-input'><input id={id} type='radio' name='marital' onChange={valueObject.onChange} value='Widowed' /> Widowed</span>
+      </div>
     </div>
   );
 }
