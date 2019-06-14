@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 import pdf from './demo.pdf';
+import FileUploader from './FileUploader/FileUploader';
 
 function App() {
   const firstname = useFormInput('');
   const lastname = useFormInput('');
   const contactNumber = useFormInput('');
   const emailAddress = useFormInput('');
-  
+
   return (
     <div className="App">
       <div className='online-form-container'>
+        <FileUploader></FileUploader>
         <form>
           <Form name={firstname} label='First Name' />
           <Form name={lastname} label='Last Name' />
@@ -19,22 +21,22 @@ function App() {
         </form>
       </div>
       <div className='scanned-form-container'>
-        <embed src={pdf} height='100%' width='100%'  />
-      </div>  
+        <embed src={pdf} height='100%' width='100%' />
+      </div>
     </div>
   );
 }
 
 function useFormInput(initialValue) {
-  const [ value, setValue ] = useState(initialValue);
+  const [value, setValue] = useState(initialValue);
   return {
     value,
     onChange: (e) => setValue(e.target.value)
   }
 }
 
-function Form({name, label}) {
-  return(
+function Form({ name, label }) {
+  return (
     <div>
       <label>{label}: </label>
       <input type='text' name='name' {...name} />
