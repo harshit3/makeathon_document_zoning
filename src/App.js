@@ -15,7 +15,6 @@ function App() {
   const proposed_name = useFormInput('');
   const proposed_nationality = useFormInput('');
   const proposed_age = useFormInput('');
-  const proposed_emailAddress = useFormInput('');
   const proposed_dob = useFormInput('');
 
   const proposer_name = useFormInput('');
@@ -24,6 +23,7 @@ function App() {
   const family_marital = useFormInput('');
   
   const address_pincode = useFormInput('');
+  const address_emailAddress = useFormInput('');
 
   useEffect(() => {
     if(fileStatus===2) {
@@ -58,7 +58,6 @@ function App() {
             <div className='section-name'>Proposed/Insured</div>
             <Form valueObject={proposed_name} label='Name' id='proposed-name' />
             <Form valueObject={proposed_age} label='Age' id='proposed-age' />
-            <Form valueObject={proposed_emailAddress} label='Email Address' id='proposed-email' />
             <Form valueObject={proposed_dob} label='Date Of Birth' id='proposed-dob' />
             <Form valueObject={proposed_nationality} label='Nationality' id='proposed-nationality' />
   
@@ -71,6 +70,7 @@ function App() {
 
             <div className='section-name'>Address</div>
             <Form valueObject={address_pincode} label='Pin Code' id='address-pincode' />
+            <Form valueObject={address_emailAddress} label='Email Address' id='address-email' />
           </form>
         </div>
         <div className='scanned-form-container'>
