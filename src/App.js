@@ -7,10 +7,7 @@ import LoadingSpinner from './LoadingSpinner';
 function App() {
 
   const [ fileStatus, setFileStatus ] = useState(1);
-  const [ fileData, setFileData ] = useState({
-    fileBase64: '',
-    type:''
-  })
+  const [ fileData, setFileData ] = useState({})
 
   const proposed_name = useFormInput('');
   const proposed_nationality = useFormInput('');
@@ -33,9 +30,9 @@ function App() {
     }
   }, [fileStatus, fileData])
 
-  function handleFileChange(fileStatus, fileData) {
-    setFileStatus(fileStatus);
-    setFileData({...fileData});
+  function handleFileChange(status, data) {
+    setFileStatus(status);
+    setFileData({...data});
   }
 
   if(fileStatus===1) {
@@ -51,7 +48,14 @@ function App() {
       <div className="App">
         <div className='online-form-container'>
           <hr/>
-          <span className='back' onClick={() => setFileStatus(1)}>Upload Again</span>
+          <span className='back' onClick={() => {
+            setFileStatus(1)
+            setFileData({})
+            }}
+          >
+            Upload Again
+          </span>
+          <span className='filename' onClick={() => setFileStatus(1)}>{fileData.fileName}</span>
           <h2 className='header'>Online Form</h2>
           <hr/>
           <form>

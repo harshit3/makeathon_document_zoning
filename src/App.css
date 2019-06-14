@@ -75,6 +75,16 @@
   color: blue;
 }
 
+.filename {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  font-size: 10px;
+  font-style: italic;
+  color: gray;
+  font-weight: bold;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
