@@ -55,7 +55,7 @@ function App() {
           <h2 className='header'>Online Form</h2>
           <hr/>
           <form>
-            <div className='section-name'>Proposed/Insured</div>
+            <div className='section-name'>Personal Details</div>
             <Form valueObject={proposed_name} label='Name' id='proposed-name' />
             <Form valueObject={proposed_age} label='Age' id='proposed-age' />
             <Form valueObject={proposed_dob} label='Date Of Birth' id='proposed-dob' />
@@ -70,7 +70,7 @@ function App() {
 
             <div className='section-name'>Address</div>
             <Form valueObject={address_pincode} label='Pin Code' id='address-pincode' />
-            <Form valueObject={address_emailAddress} label='Email Address' id='address-email' />
+            <Form valueObject={address_emailAddress} label='E-mail Address' id='address-email' />
           </form>
         </div>
         <div className='scanned-form-container'>
