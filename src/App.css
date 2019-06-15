@@ -47,8 +47,9 @@
   width: 250px;
   outline: none;
   border-radius: 5px;
-  border: 0;
+  border: 2px solid transparent;
 }
+
 .input:focus {
   border: 2px solid gray;
 }
@@ -78,7 +79,7 @@
 
 .filename {
   position: absolute;
-  top: 60px;
+  top: 56px;
   right: 10px;
   font-size: 10px;
   font-style: italic;

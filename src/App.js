@@ -47,13 +47,11 @@ function App() {
     return (
       <div className="App">
         <div className='online-form-container'>
-          <hr />
           <div className='back'>
             <FileUploader handleChange={handleFileChange} fileStatus={fileStatus} />
           </div>
-          <span className='filename' onClick={() => setFileStatus(1)}>{fileData.fileName}</span>
+          <span className='filename'>{fileData.fileName}</span>
           <h2 className='header'>Online Form</h2>
-          <hr />
           <form>
             <div className='section-name'>Personal Details</div>
             <Form valueObject={proposed_name} label='Name' id='proposed-name' />
