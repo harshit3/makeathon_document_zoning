@@ -82,8 +82,6 @@ export default function FileUploader(props) {
                     <input {...getInputProps()} />
                     <div className="uploader-small">
                         <i class="fa fa-upload" aria-hidden="true"></i>
-
-
                         {
                             isDragActive ?
                                 <div className="upload-instruction-small">Drop the files</div> :
