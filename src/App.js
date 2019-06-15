@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import pdf from './demo.pdf';
 import FileUploader from './FileUploader/FileUploader';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from './LoadingSpinner/LoadingSpinner';
 
 function App() {
 
