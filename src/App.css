@@ -68,11 +68,12 @@
 
 .back {
   position: absolute;
-  top: 35px;
-  right: 10px;
+  top: 10px;
+  left: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: blue;
+  height:100px;
+  width:100px;
 }
 
 .filename {

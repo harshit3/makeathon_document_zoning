@@ -6,8 +6,8 @@ import LoadingSpinner from './LoadingSpinner';
 
 function App() {
 
-  const [ fileStatus, setFileStatus ] = useState(1);
-  const [ fileData, setFileData ] = useState({})
+  const [fileStatus, setFileStatus] = useState(1);
+  const [fileData, setFileData] = useState({})
 
   const proposed_name = useFormInput('');
   const proposed_nationality = useFormInput('');
@@ -18,12 +18,12 @@ function App() {
   const proposer_age = useFormInput('');
 
   const family_marital = useFormInput('');
-  
+
   const address_pincode = useFormInput('');
   const address_emailAddress = useFormInput('');
 
   useEffect(() => {
-    if(fileStatus===2) {
+    if (fileStatus === 2) {
       setTimeout(() => {
         setFileStatus(3)
       }, 2000)
@@ -32,39 +32,35 @@ function App() {
 
   function handleFileChange(status, data) {
     setFileStatus(status);
-    setFileData({...data});
+    setFileData({ ...data });
   }
 
-  if(fileStatus===1) {
-    return(
-      <FileUploader handleChange={handleFileChange}/>
-    );  
-  } else if(fileStatus===2) {
-    return(
+  if (fileStatus === 1) {
+    return (
+      <FileUploader handleChange={handleFileChange} fileStatus={fileStatus} />
+    );
+  } else if (fileStatus === 2) {
+    return (
       <LoadingSpinner />
     )
-  } else{
+  } else {
     return (
       <div className="App">
         <div className='online-form-container'>
-          <hr/>
-          <span className='back' onClick={() => {
-            setFileStatus(1)
-            setFileData({})
-            }}
-          >
-            Upload Again
-          </span>
+          <hr />
+          <div className='back'>
+            <FileUploader handleChange={handleFileChange} fileStatus={fileStatus} />
+          </div>
           <span className='filename' onClick={() => setFileStatus(1)}>{fileData.fileName}</span>
           <h2 className='header'>Online Form</h2>
-          <hr/>
+          <hr />
           <form>
             <div className='section-name'>Personal Details</div>
             <Form valueObject={proposed_name} label='Name' id='proposed-name' />
             <Form valueObject={proposed_age} label='Age' id='proposed-age' />
             <Form valueObject={proposed_dob} label='Date Of Birth' id='proposed-dob' />
             <Form valueObject={proposed_nationality} label='Nationality' id='proposed-nationality' />
-  
+
             <div className='section-name'>Proposer</div>
             <Form valueObject={proposer_name} label='Name' id='proposer-name' />
             <Form valueObject={proposer_age} label='Age' id='proposer-age' />
@@ -95,17 +91,17 @@ function useFormInput(initialValue) {
   }
 }
 
-function Form({valueObject, label, id}) {
+function Form({ valueObject, label, id }) {
   let type = ''
-  switch(label) {
+  switch (label) {
     case 'Date Of Birth':
-      type='date';
+      type = 'date';
       break;
     default:
-      type='text'; 
+      type = 'text';
   }
 
-  return(
+  return (
     <div className='input-container'>
       <div></div>
       <label className='label'>{label} </label>
@@ -114,8 +110,8 @@ function Form({valueObject, label, id}) {
   );
 }
 
-function RadioForm({valueObject, label, id}) {
-  return(
+function RadioForm({ valueObject, label, id }) {
+  return (
     <div className='input-container'>
       <div></div>
       <label className='label'>{label} </label>

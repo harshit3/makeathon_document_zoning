@@ -9,7 +9,7 @@ export default function FileUploader(props) {
     const [rawBase64, setRawBase64] = useState('');
     const [fileName, setFileName] = useState('')
 
-    const { handleChange } = props;
+    const { handleChange, fileStatus } = props;
 
     const convertToBase64 = (selectedFile) => {
         //Read File
@@ -60,24 +60,43 @@ export default function FileUploader(props) {
         }
 
     }, [rawBase64, handleChange]);
-
+    console.log(fileStatus)
     return (
-        <div className="parent-container">
-            <div className="uploader-container">
+        fileStatus === 1 ?
+            <div className="parent-container">
+                <div className="uploader-container">
+                    <div {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <div className="uploader">
+
+                            {
+                                isDragActive ?
+                                    <div className="upload-instruction">Drop the files</div> :
+                                    <div className="upload-instruction">Drag and drop<br /> or<br /> Click to Select</div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div> :
+            <div className="uploader-container-small">
                 <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    <div className="uploader">
+                    <div className="uploader-small">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+
 
                         {
                             isDragActive ?
-                                <div className="upload-instruction">Drop the files</div> :
-                                <div className="upload-instruction">Drag and drop<br /> or<br /> Click to Select</div>
+                                <div className="upload-instruction-small">Drop the files</div> :
+                                <div className="upload-instruction-small"> Upload</div>
                         }
                     </div>
 
                 </div>
             </div>
-        </div>
+
+
 
 
     )
