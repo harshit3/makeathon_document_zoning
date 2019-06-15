@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './css/FileUploader.css';
 import { useDropzone } from 'react-dropzone';
-import axios from 'axios';
-import uploadIcon from '../uploadIcon.jpg';
 
 export default function FileUploader(props) {
 
@@ -42,7 +40,7 @@ export default function FileUploader(props) {
         // })
         // //req.end(callback)
     }
-    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
         accept: 'image/jpeg, image/png, application/pdf'
     });
@@ -59,7 +57,7 @@ export default function FileUploader(props) {
                 });
         }
 
-    }, [rawBase64, handleChange]);
+    }, [rawBase64, handleChange, fileName]);
     console.log(fileStatus)
     return (
         fileStatus === 1 ?
