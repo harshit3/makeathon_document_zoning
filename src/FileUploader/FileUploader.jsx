@@ -51,7 +51,7 @@ export default function FileUploader(props) {
             const base64_arr = (rawBase64).split(';');
             handleChange(loaderTriggerFlag,
                 {
-                    fileBase64: base64_arr[1].split(',')[1],
+                    base64_string: base64_arr[1].split(',')[1],
                     type: base64_arr[0].split(':')[1],
                     fileName: fileName
                 });

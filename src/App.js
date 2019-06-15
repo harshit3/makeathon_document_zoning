@@ -24,9 +24,17 @@ function App() {
 
   useEffect(() => {
     if (fileStatus === 2) {
-      setTimeout(() => {
+      let url = 'http://192.168.43.208:5000/';
+      fetch(url,{
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...fileData})
+      })
+      .then(()=> {
         setFileStatus(3)
-      }, 2000)
+      })
     }
   }, [fileStatus, fileData])
 
