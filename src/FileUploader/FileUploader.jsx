@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './css/FileUploader.css';
+import './FileUploader.css';
 import { useDropzone } from 'react-dropzone';
 
 export default function FileUploader(props) {
