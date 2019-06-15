@@ -15,7 +15,6 @@ export default function FileUploader(props) {
         if (selectedFile.length > 0) {
             // Select the very first file from list
             let fileToLoad = selectedFile[0];
-            console.log(fileToLoad)
             setFileName(fileToLoad.name)
             // FileReader function for read the file.
             let fileReader = new FileReader();
@@ -58,7 +57,6 @@ export default function FileUploader(props) {
         }
 
     }, [rawBase64, handleChange, fileName]);
-    console.log(fileStatus)
     return (
         fileStatus === 1 ?
             <div className="parent-container">
