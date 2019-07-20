@@ -1,0 +1,14 @@
+certifi==2019.3.9
+Click==7.0
+Flask==1.0.3
+Flask-Cors==3.0.7
+itsdangerous==1.1.0
+Jinja2==2.10.1
+MarkupSafe==1.1.1
+numpy==1.16.4
+opencv-python==4.1.0.25
+pdf2image==1.5.4
+Pillow==6.0.0
+pytesseract==0.2.7
+six==1.12.0
+Werkzeug==0.15.4
